@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 def create_py_file(file_name: str, code: str):
     """
@@ -16,6 +17,7 @@ def clean(files=None):
     :return:
     """
     if files is None:
-        files = ["opensi_ai.py"]
+        files = ["main.py"]
     for file in files:
-        subprocess.run(["rm", file])
+        if file in os.listdir("/home/s448780/workspace/sandbox/opensi_ai_system"): # TODO: change path dynamic
+            subprocess.run(["rm", f"/home/s448780/workspace/sandbox/opensi_ai_system/{file}"])

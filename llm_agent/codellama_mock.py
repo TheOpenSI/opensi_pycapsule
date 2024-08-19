@@ -1,4 +1,4 @@
-class LLM():
+class LLM:
     def __init__(self, llm_name: str):
         self.name = llm_name
 
