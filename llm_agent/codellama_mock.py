@@ -6,6 +6,8 @@ class LLM:
     def generate_code() -> str :
         # test fibonacci code
         return '''
+import os
+
 def fibonacci(n):
     if n <= 0:
         return "Input should be a positive integer"
