@@ -4,12 +4,13 @@ class Ollama_server():
     
     def __init__(self, model_name:str = "mistral"):
         self.model_id = model_name
+        # TODO: fix the prompt, requirements needs more testing
         self.prompt = '''You are a python code genration assistant.
 
         In your response do not add any text that will be unfamiliar to a python compiler.
 
         Always response with only the necessary code to fulfill the Question including any imports required in ### Code section.
-        In ### Requirements, list all the libraries required for the code to run like a requirements.txt file.
+        In ### Requirements, list all the libraries required to run the code, add 'none' if no libraries are required. 
         In ### Example, always provide an example to run the code.
 
         Format your code like this - 

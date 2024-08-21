@@ -5,14 +5,14 @@ sys.path.append("/home/s448780/workspace/sandbox/") # this is to point to the ro
 from llm_agent.ollama import Ollama_server
 from sandbox_service.sandbox import Sandbox
 from sandbox_service.container import Container
-from util import create_py_file, clean, parse_library_names
+from util import create_py_file, clean, create_requirements_file
 
 # llm_agent = LLM("codellama")
 llm_agent = Ollama_server("mistral")
 sandbox = Sandbox()
 container = Container()
 
-code_to_run = llm_agent.request_code("Write a python code to find the factorial of a number using base python libraries")
+code_to_run = llm_agent.request_code("Write a python code to multipy 2 matrices")
 print(f"[INFO] Raw response - \n{code_to_run}")
 
 # parsing
@@ -27,6 +27,11 @@ print(f"[INFO] Requirements - {requirements}")
 # creating python file
 create_py_file("opensi_ai_system/main", code + "\n" + example)
 
+# creating requirements file
+is_run_pip_required = create_requirements_file(requirements)
+# if is_run_pip_required:
+#     install_requirements() # this will attempt to install the requirements in the local machine
+
 # creating container
 if not container.check_if_container_exists():
     container.create_container()
@@ -34,4 +39,5 @@ else:
     container.start_container()
 
 # delete the file from local volume
-clean()
+clean(["main.py", "requirements.txt"])
+# clean()
