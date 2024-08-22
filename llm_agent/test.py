@@ -9,7 +9,7 @@ process = subprocess.Popen(
     stdout=subprocess.PIPE,
     stderr=subprocess.PIPE,
     stdin=subprocess.PIPE,
-    # shell=True, # security risk, https://stackoverflow.com/questions/12605498/how-to-use-subprocess-popen-python
+    shell=True, # security risk, https://stackoverflow.com/questions/12605498/how-to-use-subprocess-popen-python
     text=True,
     bufsize=-1
 )
@@ -44,3 +44,7 @@ try:
 finally:
     process.terminate()
     process.wait()
+
+
+
+# ===========================================================================
