@@ -29,9 +29,10 @@ while True:
                               text = True,
                               capture_output=True)
     print(f"[MISTRAL-RESPONSE] {response.stdout}")
-    if len(response_history) > KEEP_HISTORY: # TODO: fix question count
+
+    response_history.append(response.stdout)
+
+    if len(response_history) > KEEP_HISTORY:
         # keeping a limited number of conversation history
         response_history.pop(0)
         question_history.pop(0)
-
-    response_history.append(response.stdout)
