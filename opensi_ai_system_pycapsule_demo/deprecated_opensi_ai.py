@@ -33,10 +33,11 @@ is_run_pip_required = create_requirements_file(requirements)
 #     install_requirements() # this will attempt to install the requirements in the local machine
 
 # creating container
+return_code = -1
 if not container.check_if_container_exists():
-    container.create_container()
+    return_code = container.create_container()
 else:
-    container.start_container()
+    return_code = container.start_container()
 
 # delete the file from local volume
 clean(["main.py", "requirements.txt"])

@@ -12,6 +12,7 @@ def create_py_file(file_name: str, code: str):
     """
     with open(f"{file_name}.py", "w") as file:
         file.write(code)
+    print(f"[INFO] {file_name}.py file created")
 
 def create_requirements_file(requirements: List[str], file_name: str =  "requirements") -> bool:
     """
@@ -57,3 +58,18 @@ def install_requirements():
     """
     subprocess.run(["pip", "install", "-r", "requirements.txt"], shell=True)
     print("[INFO] Requirements installed")
+
+
+def get_context(original_question:str, question_history:List[str], response_history:List[str]) -> str:
+    """
+    this will return the context
+    :param original_question:
+    :param histoty:
+    :return:
+    """
+    context_input = f"context: Provided is the previouse conversation history for your reference\n\noriginal question: {original_question}\nConversation history:"
+    for question, answer in zip(question_history, response_history):
+        context_input += f"\nquestion: {question}\n\nyour answer: {answer}"
+    context_input += "\n\n"
+
+    return context_input

@@ -1,4 +1,5 @@
 import subprocess
+from typing import List
 
 class Ollama_server():
     
@@ -44,10 +45,13 @@ class Ollama_server():
         '''
 
 
-    def request_code(self, question:str = "Write a pythoon function to multiply 2 matrices."):
+    def request_code(self, cmd:List[str], context:str = None, question:str = "Write a python function to multiply 2 matrices.", add_prompt:bool = True) -> str:
+        """
+        default question
+        """
         result = subprocess.run(
-            ["ollama", "run", self.model_id],
-            input=self.prompt + "Question - "+ question, # TODO : add Question to the main prompt
+            cmd,
+            input= context + self.prompt + "Question - "+ question if add_prompt else context + question,
             text=True,
             capture_output=True
         )
