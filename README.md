@@ -18,7 +18,9 @@ Container will return any error along with ```exist code = 0|1```. If  exit code
 - Keep track of the original question
 - Generate context based on origin_question and conversation history
 - Communicate with the LLM with the context, origin_question and error from PyCapsule
-- The loop will break only if the updated code from LLM compiles with <b>exit code 0</b>
+- The loop will break only if the updated code from LLM compiles with <b>exit code 0</b>  
+  
+[Py-capsule](https://github.com/Adnan525/python_sandbox/blob/master/pycapsule.png)
 
 
 # Important
