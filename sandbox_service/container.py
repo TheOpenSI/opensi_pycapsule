@@ -39,15 +39,17 @@ class Container:
             # response = subprocess.run(f"docker run --name {self.container_name} --entrypoint /bin/bash -v $PWD:/usr/src/app sandbox_python", shell=True)
             # response = subprocess.run(f"docker run -it --name {self.container_name} --entrypoint /bin/bash -v /home/s448780/workspace/sandbox/opensi_ai_system:/usr/src/app sandbox_python", shell=True)
             response = subprocess.run(f"docker run --name {self.container_name} -v /home/s448780/workspace/sandbox/opensi_ai_system:/usr/src/app {self.IMAGE_NAME}", shell=True) # TODO: change path dynamic
-            print(f"[PYCAPSULE-EXIT CODE] {response.returncode}")
             print(f"[PYCAPSULE-RESPONSE] {response.stdout}")
+            print(f"[PYCAPSULE-EXIT CODE] {response.returncode}")
             return response.returncode, response.stdout, response.stderr
      
             
     def start_container(self):
         print("[INFO] Starting container...")
         response = subprocess.run(f"docker start -i {self.container_name}", shell=True, capture_output=True, text=True)
-        print(f"[PYCAPSULE-EXIT CODE] {response.returncode}")
         print(f"[PYCAPSULE-RESPONSE] {response.stdout}")
-        print(f"[PYCAPSULE-ERROR] {"No error" if response.stderr == "" else response.stderr}")
+        print(f"[PYCAPSULE-EXIT CODE] {response.returncode}")
+        # print(f"[PYCAPSULE-ERROR] {"No error" if response.stderr == "" else response.stderr}")
+        error_response = "No error" if response.stderr == "" else response.stderr
+        print(f"[PYCAPSULE-ERROR] {error_response}")
         return response.returncode, response.stdout, response.stderr
