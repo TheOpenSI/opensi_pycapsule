@@ -61,7 +61,7 @@ while True:
     is_origin = True # flag to check if the question is the original question
     
     while pycapsule_return_code != 0:
-        print("[OPENSI PYCAPSULE] Generated code had and error, satrting PYCAPSULE service")
+        print("[OPENSI PYCAPSULE] Generated code had an error, satrting PYCAPSULE service")
         if is_origin:
             q_origin = user_input
             is_origin = False
